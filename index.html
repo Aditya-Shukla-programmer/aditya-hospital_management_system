@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+  function logoutUser() {
+    localStorage.clear();
+    alert("You have been logged out.");
+    window.location.href = "login.html";
+  }
+</script>
+
+</head>
+<body>
+  <header>
+    <h1 style="font-size: 80px;" class="hospital_name"> <img src="hospital.png" class="hospital_icon">Vedanta Hospital</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Services</a>
+      <a href="departments.html">Departments</a>
+      <a href="doctors.html">Doctors</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="contact.html">Contact</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="login.html">Login</a>
+      <button onclick="logoutUser()" class="logout-btn">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Your Health, Our Priority</h2>
+      <p>Book appointments, consult doctors, and manage health easily.</p>
+      <a href="appointments.html" class="btn">Book Appointment</a>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Qualified Doctors</h3>
+        <p>Expert specialists available 24/7.</p>
+      </div>
+      <div class="feature">
+        <h3>Online Consultation</h3>
+        <p>Connect with doctors from home.</p>
+      </div>
+      <div class="feature">
+        <h3>Digital Records</h3>
+        <p>Access your health history anytime.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HealthyLife Hospital. All rights reserved.</p>
+  </footer>
+</body>
+</html>

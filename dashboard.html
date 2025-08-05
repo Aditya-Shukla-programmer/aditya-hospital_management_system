@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
+  <title>Dashboard – Hospital Management System</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: #f5f9fb; color: #333; }
+    header { background: #2b6777; color: white; padding: 20px 0; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    nav { margin-top: 15px; }
+    nav a, nav button { color: white; text-decoration: none; margin: 0 10px; padding: 8px 15px; border: none; background: none; font-weight: bold; border-radius: 5px; transition: background 0.3s; cursor: pointer; }
+    nav a:hover, nav button:hover { background: #52ab98; }
+    main { max-width: 1000px; margin: 40px auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); text-align: center; }
+    h2#welcomeUser { font-size: 2rem; color: #2b6777; margin-bottom: 20px; }
+    .btn { display: inline-block; margin: 15px; padding: 12px 24px; background: #2b6777; color: white; border-radius: 25px; text-decoration: none; transition: background 0.3s; }
+    .btn:hover { background: #45a29e; }
+    table { width: 100%; margin-top: 30px; border-collapse: collapse; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    th, td { padding: 14px 20px; text-align: left; border: 1px solid #ccc; }
+    th { background: #2b6777; color: white; }
+    tr:nth-child(even) { background: #f2f2f2; }
+    ul { list-style: none; padding: 0; text-align: left; }
+    ul#appointmentsList li { background: #e7f3f7; margin: 8px 0; padding: 12px; border-radius: 8px; }
+    footer { text-align: center; padding: 20px; background: #2b6777; color: white; margin-top: 40px; }
+  </style>
+</head>
+<body onload="loadDashboard()">
+  <header>
+    <h1>Dashboard</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="services.html">Services</a>
+      <a href="departments.html">Departments</a>
+      <a href="doctors.html">Doctors</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="contact.html">Contact</a>
+      <button onclick="logoutUser()">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="welcomeUser">Welcome!</h2>
+    <div id="roleBasedContent"></div>
+  </main>
+
+  <footer>
+    &copy; 2025 Hospital Management System
+  </footer>
+
+  <script>
+    function loadDashboard() {
+      const username = localStorage.getItem("username");
+      const role = localStorage.getItem("userRole");
+      if (!username || !role) {
+        alert("You must login first.");
+        window.location.href = "login.html";
+        return;
+      }
+      document.getElementById("welcomeUser").textContent = `Welcome, ${username} (${role})`;
+
+      const content = document.getElementById("roleBasedContent");
+      let html = '';
+
+      if (role === "Patient") {
+        html = `
+          <p>You can book appointments and view upcoming ones.</p>
+          <a class="btn" href="appointments.html">Book Appointment</a>
+          <h3>Your Appointments</h3>
+          <table>
+            <thead><tr><th>Name</th><th>Date</th><th>Department</th></tr></thead>
+            <tbody id="appointmentsTable"></tbody>
+          </table>
+        `;
+        content.innerHTML = html;
+        setTimeout(loadPatientAppointments, 100);
+      } else if (role === "Doctor") {
+        html = `
+          <p>Your Scheduled Appointments:</p>
+          <ul id="appointmentsList"></ul>
+        `;
+        content.innerHTML = html;
+        setTimeout(loadAppointments, 100);
+      } else if (role === "Admin") {
+        html = `
+          <p>Admin Panel: View all appointments</p>
+          <ul id="appointmentsList"></ul>
+        `;
+        content.innerHTML = html;
+        setTimeout(loadAppointments, 100);
+      }
+    }
+
+    function loadAppointments() {
+      const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+      const list = document.getElementById("appointmentsList");
+      if (!list) return;
+      if (appointments.length === 0) {
+        list.innerHTML = "<li>No appointments yet.</li>";
+      } else {
+        list.innerHTML = appointments.map(a =>
+          `<li><strong>${a.name}</strong> | ${a.date} | ${a.department}</li>`
+        ).join('');
+      }
+    }
+
+    function loadPatientAppointments() {
+      const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+      const username = localStorage.getItem("username");
+      const table = document.getElementById("appointmentsTable");
+      const filtered = appointments.filter(a => a.name.toLowerCase() === username.toLowerCase());
+      if (filtered.length === 0) {
+        table.innerHTML = `<tr><td colspan="3">No appointments booked yet.</td></tr>`;
+      } else {
+        table.innerHTML = filtered.map(a =>
+          `<tr><td>${a.name}</td><td>${a.date}</td><td>${a.department}</td></tr>`
+        ).join('');
+      }
+    }
+
+    function logoutUser() {
+      localStorage.clear();
+      alert("Logged out successfully!");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

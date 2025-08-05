@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Appointment - Hospital Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .appointment-section {
+      padding: 60px 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .appointment-section h1 {
+      font-size: 2.5rem;
+      color: #2b6777;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    form button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #2b6777;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background-color: #1f4d5d;
+    }
+
+    header {
+      background-color: #2b6777;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    header h2 {
+      margin: 0;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Appointment</h2>
+    <nav>
+      <a href="index.html">Home</a>
+   
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="appointment-section">
+      <h1>Book an Appointment</h1>
+      <form id="appointmentForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required />
+
+        <label for="date">Appointment Date</label>
+        <input type="date" id="date" required />
+
+        <label for="department">Department</label>
+        <select id="department" required>
+          <option value="">--Select--</option>
+          <option>General Medicine</option>
+          <option>Pediatrics</option>
+          <option>Cardiology</option>
+          <option>Orthopedics</option>
+          <option>Gynecology</option>
+        </select>
+
+        <label for="doctor">Preferred Doctor</label>
+        <select id="doctor">
+          <option value="">--Select--</option>
+          <option>Dr. A. Sharma</option>
+          <option>Dr. Priya Mehra</option>
+          <option>Dr. R. Khanna</option>
+          <option>Dr. M. Raghav</option>
+        </select>
+
+        <label for="message">Message (optional)</label>
+        <textarea id="message" placeholder="Describe your concern..."></textarea>
+
+        <button type="submit">Submit Appointment</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Hospital Management System. All rights reserved.</p>
+  </footer>
+
+  <script>
+  document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = localStorage.getItem("username"); // Get logged-in user
+    const date = document.getElementById("date").value;
+    const department = document.getElementById("department").value;
+    const doctor = document.getElementById("doctor").value;
+    const message = document.getElementById("message").value;
+
+    if (!name || !date || !department) {
+      alert("Please fill all required fields and login if haven't yet.");
+      return;
+    }
+
+    const newAppointment = {
+      name,
+      date,
+      department,
+      doctor,
+      message
+    };
+
+    let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    appointments.push(newAppointment);
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+
+    alert("Your appointment has been submitted successfully!");
+    window.location.href = "dashboard.html";
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Departments & Appointments</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #eef2f3, #cfd9df);
+      color: #333;
+    }
+
+    header {
+      background-color: #102c57;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+      transform: scale(1.1);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      color: #102c57;
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: #ffcc00;
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #f0f8ff;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      text-align: center;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #1746a2;
+      font-size: 1.5em;
+    }
+
+    .card p {
+      font-size: 1em;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 12px 20px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #102c57;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #102c57;
+      color: white;
+      font-size: 0.95em;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hospital Departments & Appointments</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="feedback.html">Feedback</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Our Specialized Departments</h2>
+    <div class="card-list">
+      <div class="card">
+        <h3>Cardiology</h3>
+        <p>Heart care and cardiovascular treatments with expert cardiologists.</p>
+      </div>
+      <div class="card">
+        <h3>Neurology</h3>
+        <p>Advanced treatment for brain and nervous system disorders.</p>
+      </div>
+      <div class="card">
+        <h3>Pediatrics</h3>
+        <p>Comprehensive healthcare for infants, children, and adolescents.</p>
+      </div>
+      <div class="card">
+        <h3>Orthopedics</h3>
+        <p>Bone and joint care including surgeries and rehabilitation.</p>
+      </div>
+    </div>
+
+    <h2>Your Appointments</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Patient Name</th>
+          <th>Doctor</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody id="appointmentsTableBody">
+        <!-- Appointments will be injected dynamically via JS -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    &copy; 2025 Hospital Management System
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableBody = document.getElementById("appointmentsTableBody");
+      const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+      if (appointments.length === 0) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 5;
+        cell.textContent = "No appointments booked yet.";
+        cell.style.textAlign = "center";
+        row.appendChild(cell);
+        tableBody.appendChild(row);
+      } else {
+        appointments.forEach(appt => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${appt.name}</td>
+            <td>${appt.doctor}</td>
+            <td>${appt.date}</td>
+            <td>${appt.time}</td>
+            <td>${appt.department}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

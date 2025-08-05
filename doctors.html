@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Doctors - Hospital Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .doctors-section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .doctors-section h1 {
+      font-size: 2.5rem;
+      color: #2b6777;
+      margin-bottom: 20px;
+    }
+
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .doctor-card {
+      background: #e3ecf1;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .doctor-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .doctor-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .doctor-card h3 {
+      color: #2b6777;
+      margin-bottom: 5px;
+    }
+
+    .doctor-card p {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #555;
+    }
+
+    header {
+      background-color: #2b6777;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Vedanta Hospital</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="doctors-section">
+      <h1>Meet Our Top Doctors</h1>
+      <div class="doctors-grid">
+        <div class="doctor-card">
+          <img src="A_sharma.jpg" alt="Dr. A. Sharma" />
+          <h3>Dr. A. Sharma</h3>
+          <p>Cardiologist</p>
+        </div>
+        <div class="doctor-card">
+          <img src="priya.png" alt="Dr. Priya Mehra" />
+          <h3>Dr. Priya Mehra</h3>
+          <p>Dermatologist</p>
+        </div>
+        <div class="doctor-card">
+          <img src="khanna.jpg" alt="Dr. R. Khanna" />
+          <h3>Dr. R. Khanna</h3>
+          <p>Orthopedic Surgeon</p>
+        </div>
+        <div class="doctor-card">
+          <img src="yadav.jpg" alt="Dr. S. Yadav" />
+          <h3>Dr. S. Yadav</h3>
+          <p>Pediatrician</p>
+        </div>
+        <div class="doctor-card">
+          <img src="fatima.png" alt="Dr. A. Fatima" />
+          <h3>Dr. A. Fatima</h3>
+          <p>ENT Specialist</p>
+        </div>
+        <div class="doctor-card">
+          <img src="raghav.png" alt="Dr. M. Raghav" />
+          <h3>Dr. M. Raghav</h3>
+          <p>General Physician</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Hospital Management System. All rights reserved.</p>
+  </footer>
+</body>
+</html>

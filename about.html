@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Hospital Management System</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f4f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #2b6777;
+      color: white;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #c8d8e4;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #2b6777;
+      margin-bottom: 10px;
+    }
+
+    .intro, .mission, .vision {
+      margin-bottom: 40px;
+    }
+
+    .section {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .team-member {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: #6f94bd;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About Us</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section intro">
+      <h2>Welcome to Our Hospital</h2>
+      <p>We are a leading healthcare provider committed to excellence in patient care, medical education, and research. With state-of-the-art infrastructure and a dedicated team of professionals, we offer a comprehensive range of services to our patients.</p>
+    </section>
+
+    <section class="section mission">
+      <h2>Our Mission</h2>
+      <p>To provide compassionate, accessible, high-quality, cost-effective healthcare to our community and beyond, while fostering education, research, and continuous improvement in our services.</p>
+    </section>
+
+    <section class="section vision">
+      <h2>Our Vision</h2>
+      <p>To be the most trusted healthcare partner, delivering world-class patient care, pioneering medical innovation, and shaping the future of medicine through excellence and integrity.</p>
+    </section>
+
+    <section class="section">
+      <h2>Our Team</h2>
+      <div class="team">
+        <div class="team-member">
+          <img src="smith.png" alt="Dr. Smith">
+          <h3>Dr. Sarah Smith</h3>
+          <p>Chief Medical Officer</p>
+        </div>
+        <div class="team-member">
+          <img src="john.png" alt="Dr. John">
+          <h3>Dr. John Doe</h3>
+          <p>Senior Surgeon</p>
+        </div>
+        <div class="team-member">
+          <img src="amy.png" alt="Nurse Amy">
+          <h3>Amy Wilson</h3>
+          <p>Head Nurse</p>
+        </div>
+        <div class="team-member">
+          <img src="rahul.png" alt="Admin Rahul">
+          <h3>Rahul Mehra</h3>
+          <p>Hospital Administrator</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Hospital Management System | Designed with ❤️
+  </footer>
+</body>
+</html>
